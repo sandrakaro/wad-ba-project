@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- The below line is for the mobile view responsiveness
+     It setss the the page width to the device's width.
+     Initial-scale just sets what the zoom level be at the start-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Feed</title>
+    <!--Telling the page what stylesheet to refrence-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--Header and navigation-->
+    <header>
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <!--Points to our home page which is index.html-->
+                <a href="index.html" class="active">Home</a>
+                <!--Just makes a vertical line to seperate the Home and add post
+                button.-->
+                <span class="divider">|</span>
+                <!--Button when pressed sends the user to addPost.html-->
+                <a href="addPost.html">Make a Post</a>
+            </div>
+            <div class="user-profile">
+                <!--User avatar icon and a link to login-->
+                <a href="login.html" title="User Profile">
+                    <!-- This is for the top right user icon.
+                    Wrapping the <img> inside the <a href of login.html> allows us to
+                    to click on the user icon to navigate directly to the login page.
+                    src needs to be our profile picture for the user-->
+                    <img src="res/profile.png" alt="User Profile Icon" class="profile-icon">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main container layout using Flexbox (sidebars and feed) -->
+    <div class="container">
+        <!--Left sidebar-->
+        <aside class="sidebar left-sidebar"></aside>
+
+        <!--Main feed conten-->
+        <main class="feed">
+            
+            <!--Post 1: Image post-->
+            <article class="post">
+                <!--Holds the metadata at the top of the post.
+                This includes the user's profile picture and creation date.-->
+                <header class="post-header">
+                    <img src="res/profile.png" alt="Author Avatar" class="author-avatar">
+                    <span class="post-date">Oct 3, 2026</span>
+                </header>
+                <!--Post's main boyd that contains the image that the user has posted
+                aswell as the text description.-->
+                <div class="post-content">
+                    <img src="res/tartu_placeholder.png" alt="Tartu 2024" class="post-image">
+                    <p class="post-text">Tartu 2024</p>
+                </div>
+                <footer class="post-footer">
+                    <button type="button" class="like-btn" aria-label="Like post">👍</button>
+                </footer>
+            </article>
+
+            <!--Post 2: Text post-->
+            <article class="post">
+                <!--Holds the metadata at the top of the post.
+                This includes the user's profile picture and creation date.-->
+                <header class="post-header">
+                    <img src="res/profile.png" alt="Author Avatar" class="author-avatar">
+                    <span class="post-date">Oct 2, 2026</span>
+                </header>
+                <!--This is only a text post so there is no need for img tag here-->
+                <div class="post-content">
+                    <p class="post-text">Anyone knows in which room is the lab today?</p>
+                </div>
+                <footer class="post-footer">
+                    <button type="button" class="like-btn" aria-label="Like post">👍</button>
+                </footer>
+            </article>
+
+            <!--Post 3: Image post-->
+            <article class="post">
+                <header class="post-header">
+                    <img src="res/profile.png" alt="Author Avatar" class="author-avatar">
+                    <span class="post-date">Sep 28, 2026</span>
+                </header>
+                <div class="post-content">
+                    <img src="res/delta.png.png" alt="Autumn in Estonia" class="post-image">
+                    <p class="post-text">Enjoying the beautiful autumn colors in the park!</p>
+                </div>
+                <footer class="post-footer">
+                    <button type="button" class="like-btn" aria-label="Like post">👍</button>
+                </footer>
+            </article>
+
+            <!--Post 4: Text post-->
+            <article class="post">
+                <header class="post-header">
+                    <img src="res/profile.png" alt="Author Avatar" class="author-avatar">
+                    <span class="post-date">Sep 24, 2026</span>
+                </header>
+                <div class="post-content">
+                    <p class="post-text">Don't forget to submit your homework before the deadline!</p>
+                </div>
+                <footer class="post-footer">
+                    <button type="button" class="like-btn" aria-label="Like post">👍</button>
+                </footer>
+            </article>
+
+            <!--Post 5: Text post-->
+            <article class="post">
+                <header class="post-header">
+                    <img src="res/profile.png" alt="Author Avatar" class="author-avatar">
+                    <span class="post-date">Sep 21, 2026</span>
+                </header>
+                <div class="post-content">
+                    <img src="res/classroom.png.png" alt="Study session" class="post-image">
+                    <p class="post-text">Welcome to the new semester! Good luck everyone!</p>
+                </div>
+                <footer class="post-footer">
+                    <button type="button" class="like-btn" aria-label="Like post">👍</button>
+                </footer>
+            </article>
+
+        <!-- End of main container-->
+        </main>
+
+        <!--Sidebar Right-->
+        <aside class="sidebar right-sidebar"></aside>
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+</body>
+</html>
