@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="res/css/addPost.css">
     <title>Add Post</title>
 </head>
 <body>
     <main>
         <form>
-            <label for="textarea">Post body</label>
-            <input type="text" id="textarea">
-            <br>
+            <div class="form-element">
+                <label for="textarea">Post body</label>
+                <textarea id="textarea" placeholder="textarea"></textarea>
+            </div>
 
-            <label for="fileupload">Select file</label>
-            <input type="file" id="fileupload">
-            <br>
+            <div class="form-element">
+                <label for="fileupload">Select file</label>
+                <input type="file" id="fileupload">
+            </div>
 
-            <button>Create post</button>
+            <div class="form-element">
+                <button>Create post</button>
+            </div>
         </form>
     </main>
     

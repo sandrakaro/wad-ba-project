@@ -1,0 +1,41 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+main > form {
+    width: 50%;
+    background-color: #a5a4a4;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+div.form-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0;
+}
+
+button {
+    color: #fff;
+    background-color: #1d44c2;
+    border: none;
+    padding: 5px 10px;
+}
+
+form > file {
+    border: none;
+}
+
+/*form file {
+    text-align: center;
+}*/
+
+form textarea {
+    resize: none;
+    border: none;
+}
