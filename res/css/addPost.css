@@ -1,0 +1,111 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /*positions form box to
+    the middle of the page vertically*/
+}
+
+input[type=file] {
+        display: block;
+        color: transparent;
+        max-width: 260px;
+        margin: auto 10px;
+        width: 100%;
+}
+
+@media (max-width: 400px) {
+    main > form {
+        div.form-element {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            /*wraps the elements when width is small 
+            so form element's label is on top instead 
+            of on the side*/
+        }
+    }
+    input[type=file] {
+        margin: 0 0;
+}
+}
+
+main > form {
+    width: 50%;
+    background-color: #cfcdcd;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    label {
+        margin: 0 10px;
+        max-width: 100%;
+        text-align: right;
+    }
+    textarea {
+        resize: none;
+        border: none;
+        margin: auto 10px;
+        height: 100px;
+        width: 80%;
+    }
+    
+    div.form-element {
+        display: flex;
+        flex-direction: row;
+        margin: 8px 0;
+    }
+}
+
+.form-element button {
+        color: #fff;
+        background-color: #1d44c2;
+        cursor: pointer;
+        border: none;
+        padding: 5px 10px;
+        margin-inline: auto; /*this centers the button horizontally*/
+    }
+
+
+
+input[type="file"]::file-selector-button {
+    background-color: #565657;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 10px;
+    border: 1px solid #000;
+}
+
+/*header with class nav-header is used as a nav bar, 
+idea taken from Lab3 materials*/
+.nav-header {
+    display: flex;
+    justify-content: space-between; /*separates avatar and Home to opposite ends of the nav bar*/
+    align-items: center; /*centers nav bar items vertically*/
+    background-color: #afaeae;
+    padding: 15px;
+    border-radius: 10px;
+
+    ul li a {
+        color: #000000;
+        text-decoration: none;
+        /*remove underline and blue color from 
+        list items (links) in nav*/
+    }
+        
+    ul {
+        list-style-type: none;
+        /*removes bullet points from before list items*/
+        margin: 0;
+        padding: 0;
+    }
+
+}
+
+.avatar img {
+    width: 50px;
+    height: 50px;
+    /*change avatar image size in nav bar*/
+}
