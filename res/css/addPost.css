@@ -2,7 +2,16 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh; /*positions form box height to middle*/
+    height: 80vh; /*positions form box to
+    the middle of the page vertically*/
+}
+
+input[type=file] {
+        display: block;
+        color: transparent;
+        max-width: 260px;
+        margin: auto 10px;
+        width: 100%;
 }
 
 @media (max-width: 400px) {
@@ -16,6 +25,9 @@ main {
             of on the side*/
         }
     }
+    input[type=file] {
+        margin: 0 0;
+}
 }
 
 main > form {
@@ -25,10 +37,11 @@ main > form {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     label {
         margin: 0 10px;
         max-width: 100%;
+        text-align: right;
     }
     textarea {
         resize: none;
@@ -37,35 +50,32 @@ main > form {
         height: 100px;
         width: 80%;
     }
-    button {
+    
+    div.form-element {
+        display: flex;
+        flex-direction: row;
+        margin: 8px 0;
+    }
+}
+
+.form-element button {
         color: #fff;
         background-color: #1d44c2;
         cursor: pointer;
         border: none;
         padding: 5px 10px;
+        margin-inline: auto; /*this centers the button horizontally*/
     }
-    div.form-element {
-        display: flex;
-        flex-direction: row;
-        text-align: center;
-        margin: 8px 0;
-    }
-}
 
-input[type=file] {
-        display: block;
-        color: transparent;
-        margin: 0 auto;
-        max-width: 260px;
-         width: 100%;
-}
+
 
 input[type="file"]::file-selector-button {
     background-color: #565657;
     color: #fff;
     padding: 5px 10px;
     cursor: pointer;
-    margin: 0 auto;
+    margin: 0 10px;
+    border: 1px solid #000;
 }
 
 /*header with class nav-header is used as a nav bar, 
@@ -99,7 +109,3 @@ idea taken from Lab3 materials*/
     height: 50px;
     /*change avatar image size in nav bar*/
 }
-
-/* #fileupload {
-    display: none;
-} */
