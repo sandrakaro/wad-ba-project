@@ -40,12 +40,9 @@ main > form {
     button {
         color: #fff;
         background-color: #1d44c2;
+        cursor: pointer;
         border: none;
         padding: 5px 10px;
-    }
-    input[type=file] {
-        display: block;
-        color: transparent;
     }
     div.form-element {
         display: flex;
@@ -56,10 +53,11 @@ main > form {
 }
 
 input[type=file] {
-        justify-content: center;
+        display: block;
+        color: transparent;
         margin: 0 auto;
         max-width: 260px;
-        width: 100%;
+         width: 100%;
 }
 
 input[type="file"]::file-selector-button {
@@ -67,13 +65,15 @@ input[type="file"]::file-selector-button {
     color: #fff;
     padding: 5px 10px;
     cursor: pointer;
-    margin: auto;
+    margin: 0 auto;
 }
 
-
-nav {
+/*header with class nav-header is used as a nav bar, 
+idea taken from Lab3 materials*/
+.nav-header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between; /*separates avatar and Home to opposite ends of the nav bar*/
+    align-items: center; /*centers nav bar items vertically*/
     background-color: #afaeae;
     padding: 15px;
     border-radius: 10px;
@@ -81,16 +81,25 @@ nav {
     ul li a {
         color: #000000;
         text-decoration: none;
-        /*justify-content: flex-end;*/
-        img {
-            width: 50px;
-            height: 50px;
-        } 
+        /*remove underline and blue color from 
+        list items (links) in nav*/
     }
-    
+        
     ul {
         list-style-type: none;
+        /*removes bullet points from before list items*/
         margin: 0;
         padding: 0;
     }
+
 }
+
+.avatar img {
+    width: 50px;
+    height: 50px;
+    /*change avatar image size in nav bar*/
+}
+
+/* #fileupload {
+    display: none;
+} */

@@ -8,24 +8,15 @@
 </head>
 
 <body>
- <!---<header class="header">
+    <header class="nav-header">
         <ul class="nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-
-        <a class="logo" href="#"><img src="res/images/me.png" width="50" height="50" alt="My picture"></a>
-    </header>--->
-    <nav>
-        <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a><img src="res/images/default-avatar.png" alt="Avatar"></a></li>
         </ul>
-    </nav>
+        <a class="avatar"><img src="res/images/default-avatar.png" alt="Avatar"></a>
+    </header>
 
     <main>
-        <form>
+        <form action="index.html"><!---submitting the form directs to index.html-->
             <div class="form-element">
                 <label for="textarea">Post body</label>
                 <textarea id="textarea" placeholder="textarea"></textarea>
@@ -37,7 +28,7 @@
             </div>
 
             <div class="form-element">
-                <button>Create post</button>
+                <button type="submit">Create post</button>
             </div>
         </form>
     </main>
