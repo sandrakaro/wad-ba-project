@@ -2,40 +2,95 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 80vh; /*positions form box height to middle*/
+}
+
+@media (max-width: 400px) {
+    main > form {
+        div.form-element {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            /*wraps the elements when width is small 
+            so form element's label is on top instead 
+            of on the side*/
+        }
+    }
 }
 
 main > form {
     width: 50%;
-    background-color: #a5a4a4;
+    background-color: #cfcdcd;
     border-radius: 10px;
     padding: 20px;
-}
-
-div.form-element {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 8px 0;
+    label {
+        margin: 0 10px;
+        max-width: 100%;
+    }
+    textarea {
+        resize: none;
+        border: none;
+        margin: auto 10px;
+        height: 100px;
+        width: 80%;
+    }
+    button {
+        color: #fff;
+        background-color: #1d44c2;
+        border: none;
+        padding: 5px 10px;
+    }
+    input[type=file] {
+        display: block;
+        color: transparent;
+    }
+    div.form-element {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        margin: 8px 0;
+    }
 }
 
-button {
+input[type=file] {
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 260px;
+        width: 100%;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #565657;
     color: #fff;
-    background-color: #1d44c2;
-    border: none;
     padding: 5px 10px;
+    cursor: pointer;
+    margin: auto;
 }
 
-form > file {
-    border: none;
-}
 
-/*form file {
-    text-align: center;
-}*/
+nav {
+    display: flex;
+    justify-content: flex-start;
+    background-color: #afaeae;
+    padding: 15px;
+    border-radius: 10px;
 
-form textarea {
-    resize: none;
-    border: none;
+    ul li a {
+        color: #000000;
+        text-decoration: none;
+        /*justify-content: flex-end;*/
+        img {
+            width: 50px;
+            height: 50px;
+        } 
+    }
+    
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
 }
