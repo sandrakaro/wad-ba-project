@@ -1,0 +1,342 @@
+/*
+Global styles and reset
+
+* <- this star is a universal selector which targets every
+HTML element on the page.
+ */
+* {
+    /*
+    box-sizing: border-box -- has included padding and border thickness
+    in the calculations of width and height of the elements.
+    This prevents the layout from breaking.
+
+    margin: 0 and padding 0 -- Should reset default browser margins and paddings
+    for consistent styling over different browsers hopefully.
+    */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*
+    font-family -- Sets a standard font across the document.
+    background-color -- Sets a body background color.
+    color -- Sets the color of the text.
+    display -- Tells the body that it is flex container
+    flex-direction -- Tells the body that it's a vertical container
+    min-height -- Ensures the body spans at least 100% of the viewport height(vh).
+    This ensures that the footer stays pushed to the bottom even on short pages.
+    */
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f1ea;
+    color: #2c3531;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*Header and navigation
+
+background-color -- Sets a background color for the header.
+padding -- Adds 10pixels of inner vertical space and 20 pixels of horizontal spacing.
+*/
+header {
+    background-color: #4a5d4e;
+    padding: 10px 20px;
+}
+
+/*
+This is the top bar that houses the "Home" and "Make a post" buttons
+aswell as the profile.
+*/
+.nav-bar {
+    /*
+    display -- Tells the navigation wrapper that it's a flex container
+    justify-content -- Pushes navigation links to the far left and the user
+    profile avatar to the far right.
+    align-items -- Vertically centers the items along the navigation bar.
+    max-width -- Sets an upper limit of how wide the navigation bar can grwo.
+    margin -- Horizontally centers the navigation bar within its parent header once the screen width exceeds
+    1200 pixels.
+    auto in this case automatically divides all remaining extra space equally beteen
+    the left and right margins. Keeping the .nav-bar hopefully neatly centered on the page.
+    */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/*This sets up the link container with the inline flex display.
+It also tells that the gap between each of the "Home", "|" and "Make a post"
+would be 10 pixels.
+*/
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* RULE 1: Pseudo-class selector (:hover)
+nav-links a -- Targets all standard link tags that have <a> inside
+elements with the nav-links class.
+text-decoration -- Removes default browser link underlining
+color -- Sets the link text color.
+font-size -- Sets the size of the text to 1.2 times the root font size.
+padding -- Adds 6pixels inner padding above and below and 12 pixels of
+padding to left and rigt around the text itself. This creates clickable button areas.
+border-readius -- Rounds corners of the link buttons backgorund by 4 pixels.
+transition -- Animates the bacground color change hopefully smothly over about 0.2seconds
+during hovering instead of changing instantly.
+*/
+.nav-links a {
+    text-decoration: none;
+    color: #f4f1ea;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+/*This sets a few more settings when the hover happens.
+background-color -- Sets the link background color when curser
+is hovering over "Home" or "Make a post" button.
+color -- Changes the link text color when you are hovering over the text.
+*/
+.nav-links a:hover {
+    background-color: #c87d55;
+    color: #fff;
+}
+
+/*
+profile-icon -- Targets profile image element in the header.
+width -- Fixes square dimension bounds at 35x35 pixels.
+border-radius -- Cuts corners completely to turn the square image into a circle.
+background-color -- Sets the fallback background color while the image is loading 
+*/
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #d0d0d0;
+}
+
+/* Main Layout with Flexbox
+container -- Targets main wrapper holding the sidebars and central feed.
+display -- Activates the  Flexbox layout horizontally aligning sidebars and feed in a single row.
+flex -- Expands container verticallty to use the remaining available space between the
+header and the footer
+max-width -- Limits maximum layout width to 1200pixels on widescreen displays.
+width -- Allows conatiner to stretchout up to 100% of the screen width on smaller viewports.
+margin -- Sets 20pixels top and bottom margins and and automatically centers the container horizontally.
+gap -- Sets a fixed 20 pixel spacing gap between direct flex children. Those are:
+the left sidebar, the main feed and the right sidebar.
+paddig -- Adds 10 pixels of breathing room between the left and right screen edges.
+*/
+.container {
+    display: flex;
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    gap: 20px;
+    padding: 0 10px;
+}
+
+/*Sidebar - Targets the sidebars on the left and right.
+flex -- Assigns a proprotional grow unit to each sidebar.
+In our case that means each sidebar takes 1/4th of horizontal container space.
+background-color -- Fills sidebars with a background color.
+border-radius -- Rounds sidebar outer corners by 8 pixels
+min-height -- Ensures sidebars maintain visible height even when they are empty.
+*/
+.sidebar {
+    flex: 1;
+    background-color: #8f9e8b;
+    border-radius: 8px;
+    min-height: 300px;
+}
+
+/*The main feed
+feed -- Targets the central post feed container
+flex -- Assigns 2 proportional grow units so that the central feed
+takes twice as much in width as a sidebar
+display -- Turns the feed into a fertical Flexbox container which
+stacks the posts top to bottom.
+gap -- Adds 20pixels of vertical spacing betweeen posts.
+*/
+.feed {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* The posts
+article.post -- targets <article> tags with class post
+background color -- Sets the background color for individual posts.
+border -- Draws a light 1pixel solid border frame around each of the 
+posts for better visuals. Without it it would blend into the white background.
+border-radius -- Rounds the corners of the posts by 12 pixels
+overflow -- Clips any child elements that extend past the rounded corners.
+Keeping the 12pixel border nicely.
+padding -- Adds 15 pixels of internal spacing insede the post's container
+display, flex-direction, gap -- Stacks post header, image and or text, 
+body and footer vertically with 10 pixels of spacing. 
+*/
+article.post {
+    background-color: #faf8f5;
+    border: 1px solid #d8e0d5;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    gap: 10px;
+}
+
+/*Child Selector
+article > header -- Tagets <header> tags that are direct immediate children
+of an <article>
+background-color -- Changes the color fo the post's header
+padding -- Adds 10pixels of top and bottom padding and also 20 pixels of
+left and right padding inside the post's header bar
+display -- converts the post header line into a floxbox row
+justify-content -- Pushes author avatar to the far left and the
+post creation date to the far right.
+align-items -- Aligns avatar image and date text along central vertical axis.
+*/
+article > header {
+    background-color: #8f9e8b;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/*
+author-avatar -- Targets small profile icons in the posts.
+width, height -- Set the size of the autohs icon to 30x30 pixels
+border-readius -- Rouns imgae into circular icon
+background-color -- Sets fallback bacground color.
+*/
+.author-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #888;
+}
+
+/*
+post-date -- formats the date text with smaller font size
+and a slightly different color.
+*/
+.post-date {
+    font-size: 0.9rem;
+    color: #f4f1ea;
+}
+
+/*RULE 3: Descendant Selector
+post-content img -- Targets anu <img> tag located inside the
+post-content wrapper.
+width -- Forces post image to scale fully across the inner width of the post.
+height -- Preserves original image aspect ratio dynamically
+while scaling width.
+border-radius -- Sets 6pixels of corner rounding to post imsages.
+margin-bottom -- Sets 8 pixels of margin spacing beneath post images. 
+*/
+.post-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+/*
+post-text -- Sets standard font sizing and 1.4 line-height spacing
+for text messages within the posts.
+*/
+.post-text {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* RULE 4: Adjacent Sibling Selector
+post-image + p -- Targets a <p> element that directly follows an element
+with the class post-image.
+magin-top -- Sets 6pxiels of margin to the top spacing specifically
+when text appears right under an image inside the post.
+*/
+.post-image + p {
+    margin-top: 6px;
+}
+
+/* RULE 5: General Sibling Selector
+header ~ footer -- Targeting the <footer> elements sharing the same
+parent that follow after a <header> element.
+*/
+header ~ footer {
+    background-color: #e6ddd4;
+    display: flex;
+    align-items: center;
+}
+
+/*
+like-btn -- targets the thumb-up button
+bacgkground, border -- Strips the native HTML
+button background colors and outlines.
+font-size -- Enlarges the thumbs-up icon size
+cursor -- Changes mouse cursor to clickable pointer hand when hovering
+over the button.
+*/
+.like-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/*Footer
+footer -- Targets global semantic <footer> element at the bottom
+of the HTML page
+bacgkground-color -- Sets the color of the background of the footer.
+text-align -- horizontally centers the footer text currently not working. Need to take a look at it.
+padding -- Adds 20 pixels of inner padding above and below the text.
+font-size -- Changes the size of the text of the footer.
+margin-top -- Works with body flex container to push the page footer
+down to screen bottom on short viewports. (flex-direction: column)
+*/
+body > footer {
+    background-color: #4a5d4e;
+    color: #f4f1ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    margin-top: auto;
+}
+
+/*Responsive layout for mobile devices
+@media (max-width) -- Apllies an enclosed styling rule when screen
+viewport width drops down to 768 pixels or narrower
+container -- Changes main flex layout form horizontal row to single vertical column
+sidebar -- Hides the sidebars on small phone screens to save some space
+feed -- Expands post feed column to 100% of the phone screen width.
+*/
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: none; /* Hide sidebars on smaller mobile screens */
+    }
+
+    .feed {
+        width: 100%;
+    }
+}
