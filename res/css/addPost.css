@@ -43,7 +43,7 @@ main > form {
         max-width: 100%;
         text-align: right;
     }
-    textarea {
+    label + textarea {
         resize: none;
         border: none;
         margin: auto 10px;
