@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "author": {
+            "name": "Sandra Karo",
+            "avatar": "res/images/profile.png"
+        },
+        "createdAt": "2026-10-03T14:32:00Z",
+        "text": "Tartu 2024",
+        "image": "res/images/tartu_placeholder.png",
+        "imageAlt": "Tartu 2024",
+        "likes": 12
+    },
+    {
+        "id": 2,
+        "author": {
+            "name": "Arnold Tamm",
+            "avatar": "res/images/default-avatar.png"
+        },
+        "createdAt": "2026-10-02T09:15:00Z",
+        "text": "Anyone knows in which room is the lab today?",
+        "image": null,
+        "imageAlt": null,
+        "likes": 3
+    },
+    {
+        "id": 3,
+        "author": {
+            "name": "Sandra Karo",
+            "avatar": "res/images/profile.png"
+        },
+        "createdAt": "2026-09-28T17:40:00Z",
+        "text": "Enjoying the beautiful autumn colors in the park!",
+        "image": "res/images/delta.png",
+        "imageAlt": "Autumn in Estonia",
+        "likes": 27
+    },
+    {
+        "id": 4,
+        "author": {
+            "name": "Arnold Tamm",
+            "avatar": "res/images/default-avatar.png"
+        },
+        "createdAt": "2026-09-24T11:05:00Z",
+        "text": "Don't forget to submit your homework before the deadline!",
+        "image": null,
+        "imageAlt": null,
+        "likes": 41
+    },
+    {
+        "id": 5,
+        "author": {
+            "name": "Sandra Karo",
+            "avatar": "res/images/profile.png"
+        },
+        "createdAt": "2026-09-21T08:00:00Z",
+        "text": "Welcome to the new semester! Good luck everyone!",
+        "image": "res/images/classroom.png",
+        "imageAlt": "Study session",
+        "likes": 18
+    },
+    {
+        "id": 6,
+        "author": {
+            "name": "Arnold Tamm",
+            "avatar": "res/images/default-avatar.png"
+        },
+        "createdAt": "2026-09-18T19:22:00Z",
+        "text": "Late night debugging. Coffee count: 4.",
+        "image": null,
+        "imageAlt": null,
+        "likes": 9
+    },
+    {
+        "id": 7,
+        "author": {
+            "name": "Sandra Karo",
+            "avatar": "res/images/profile.png"
+        },
+        "createdAt": "2026-09-15T13:10:00Z",
+        "text": "Sunset over the Delta building today.",
+        "image": "res/images/delta.png",
+        "imageAlt": "Sunset over the Delta building",
+        "likes": 33
+    },
+    {
+        "id": 8,
+        "author": {
+            "name": "Arnold Tamm",
+            "avatar": "res/images/default-avatar.png"
+        },
+        "createdAt": "2026-09-11T10:45:00Z",
+        "text": "Does anyone have notes from the CSS lecture?",
+        "image": null,
+        "imageAlt": null,
+        "likes": 5
+    },
+    {
+        "id": 9,
+        "author": {
+            "name": "Sandra Karo",
+            "avatar": "res/images/profile.png"
+        },
+        "createdAt": "2026-09-06T16:30:00Z",
+        "text": "Our classroom before the first lab.",
+        "image": "res/images/classroom.png",
+        "imageAlt": "Classroom before the first lab",
+        "likes": 21
+    },
+    {
+        "id": 10,
+        "author": {
+            "name": "Arnold Tamm",
+            "avatar": "res/images/default-avatar.png"
+        },
+        "createdAt": "2026-09-01T07:55:00Z",
+        "text": "First day of the semester! Here we go.",
+        "image": "res/images/tartu_placeholder.png",
+        "imageAlt": "First day of the semester",
+        "likes": 15
+    }
+]
