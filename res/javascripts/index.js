@@ -9,6 +9,27 @@
  */
 
 /**
+ * This is how the dropdown menu works when clicking on the avatar icon in the index file.
+ */
+const profileBtn = document.getElementById("profileBtn");
+const dropdownMenu = document.getElementById("dropdownMenu");
+
+if (profileBtn && dropdownMenu) { // Checking if they even exist on index file.
+    profileBtn.addEventListener("click", (event) => { // User clicks on the icon!
+        event.preventDefault(); // Because it opens index#, it would open it at the top of the page (reloading?). This prevents it.
+        event.stopPropagation(); // This ensures that clicking the picture doesn't immediately trigger the window click event that would close the menu.
+        dropdownMenu.classList.toggle("show"); // This is why it works: if the show class is missing, it adds it (opening the menu); if it's already there, it removes it (closing the menu).
+    });
+
+    // Closes the dropdown menu when clicking elsewhere.
+    window.addEventListener("click", () => { // Listens for clicks anywhere across the entire browser window.
+        if (dropdownMenu.classList.contains("show")) { // Is it open?
+            dropdownMenu.classList.remove("show"); // Not anymore!!!
+        }
+    });
+}
+
+/**
  * Turns one post object from posts.json into a finished <article> element.
  *
  * @param {Object} post - a single element of the posts.json array.

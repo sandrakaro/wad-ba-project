@@ -1,47 +1,60 @@
-* {
-    box-sizing: border-box;
+* { /* Rakendub kõikidele lehe elementidele */
+    box-sizing: border-box; /* Tagab, et elementide laius ja kõrgus sisaldavad ka siseääriseid (padding) ja piirjooni (border) */
     margin: 0;
     padding: 0;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Top */
 .nav-header {
-    display: flex;
-    justify-content: space-between;
+    display: flex; 
+    justify-content: space-between; /* Vahe sees */
     align-items: center;
 
-    background-color: #afaeae;
-    padding: 10px 15px;
-    border-radius: 10px;
-    margin: 10px;
+    background-color: #4a5d4e;
+    padding: 10px 20px;
+    border-radius: 10px; /* Ümar */
+    margin: 10px; /* Outside the border, padding is inside */
+}
+
+/* So that the header and footer are also the color of the bg */
+body {
+    background-color: #f4f1ea;
 }
 
 .nav > li {
-    list-style-type: none;
+    list-style-type: none; /* No dot */
     margin: 0;
     padding: 0;
 }
 
 .nav li a {
-    color: #000;
+    text-decoration: none;
+    color: #f4f1ea;
     font-size: 24px;
     padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
 }
 
 /* Hover */
 .nav li a:hover {
-    background-color: #8f8f8f;
+    background-color: #c87d55;
+    color: #fff;
 }
 
 .avatar img {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
+    background-color: #d0d0d0;
 }
 
 
 /* Where it's at */
 
 main {
+    background-color: #f4f1ea;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,24 +67,27 @@ main {
 .login-box {
     width: 90%;
     max-width: 400px;
-    background-color: #cfcdcd;
+    background-color:#8f9e8b;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
 }
 
-.login-box h2 {
+.login-box h1 {
     margin: 10px;
     font-size: 24px;
+    color: #2c3f30;
 }
 
 
-/* CREATE ACCOUNT */
+/* Create account */
 
 .create-acc,
 .forgot-pass {
-    color: #1a51a9;
-    font-size: 20px;
+    text-decoration: none;
+    color: #497352;
+    /*color: #1a51a9;*/
+    font-size: 22px;
 }
 
 
@@ -80,11 +96,13 @@ main {
 .or-text {
     font-size: 20px;
     margin: 10px;
+    color: #f4f1ea;
 }
 
 .or-text + .login-title{
     font-size: 20px;
     margin: 10px;
+    color: #f4f1ea;
 }
 
 
@@ -100,14 +118,17 @@ main {
 .login-form input {
     width: 160px;
     height: 40px;
-    padding: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 0cap;
 }
 
 /* Login button */
 
 .login-btn {
-    background-color: #1a51a9;
-    color: white;
+    background-color: #e38f61;
+    border-radius: 6px;
+    color: #f4f1ea;
     padding: 8px;
     margin: 5px;
     border: #000;
@@ -116,5 +137,7 @@ main {
 }
 
 .login-btn:hover {
-    background-color: #123676;
+    background-color: #c87d55;
+    color: #fff;
 }
+

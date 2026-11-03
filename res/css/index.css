@@ -112,16 +112,84 @@ color -- Changes the link text color when you are hovering over the text.
 }
 
 /*
+user-profile -- Both the icon and dropdown.
+position -- Acts as an anchor point so the absolute-positioned dropdown menu stays correctly positioned directly underneath it.
+display -- Keeps the element inline with other content while still allowing custom width and height.
+*/
+.user-profile {
+    position: relative;
+    display: inline-block;
+}
+
+/*
 profile-icon -- Targets profile image element in the header.
 width -- Fixes square dimension bounds at 35x35 pixels.
 border-radius -- Cuts corners completely to turn the square image into a circle.
-background-color -- Sets the fallback background color while the image is loading 
+background-color -- Sets the fallback background color while the image is loading.
+cursor -- When hovering over the profile, turns cursor into a pointer.
+display -- Removes default inline spacing around the image.
 */
 .profile-icon {
     width: 35px;
     height: 35px;
     border-radius: 50%;
     background-color: #d0d0d0;
+    cursor: pointer;
+    display: block;
+}
+
+/*
+dropdown-content -- The dropdown menu.
+display -- Hidden by default.
+position -- Makes the menu float above other page elements.
+right -- Aligns the right edge of the menu with the container.
+top -- Dropdown menu isn't right underneath the icon.
+background-color -- Sets a white background color.
+min-width -- Ensures the menu is at least 150 pixels wide.
+border-radius -- Slightly rounds the outer corners of the box.
+overflow -- Clips any content that goes past the rounded corners.
+*/
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background-color: #ffffff;
+    min-width: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/*
+dropdown-content a -- Dropdown menu's text.
+color -- Sets the link text color.
+padding -- Adds internal spacing so links are easy to click.
+text-decoration -- No lines under links.
+display -- Makes the entire link row clickable, not just the text.
+font-size -- Sets the text size.
+*/
+.dropdown-content a {
+    color: #4a5d4e;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+/*
+dropdown-content a:hover -- When hovering over dropdown menu text.
+background-color -- Changes color when hovering over.
+*/
+.dropdown-content a:hover {
+    background-color: #e6ddd4;
+}
+
+/*
+dropdown-content.show -- For JavaScript.
+display -- Makes the menu visible when JavaScript adds the .show class to it.
+*/
+.dropdown-content.show {
+    display: block;
 }
 
 /* Main Layout with Flexbox
