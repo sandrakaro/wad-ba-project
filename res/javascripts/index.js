@@ -146,10 +146,11 @@ async function loadPosts() {
          * This line currently checks that our local objects work on the page.
          * This was my (Arnold's) test to make sure the obejcts truly worked that i created.
          */
-        const response = await fetch("res/data/posts.json");
+        //const response = await fetch("res/data/posts.json");
 
         // Task 4: (kept for reference, commented out as the task requires):
-        // const response = await fetch("<put_the_url_you_found_here>");
+        const response = await fetch("https://api.npoint.io/4305f0c6905e5f2bd24b");
+        // NB!! if you are getting cert authority invalid error here, connect to UT eduVPN
 
         /**
          * fetch() only rejects when the request itself fails (DNS, offline,
