@@ -30,13 +30,14 @@
             </div>
             <div class="user-profile">
                 <!--User avatar icon and a link to login-->
-                <a href="login.html" title="User Profile">
-                    <!-- This is for the top right user icon.
-                    Wrapping the <img> inside the <a href of login.html> allows us to
-                    to click on the user icon to navigate directly to the login page.
-                    src needs to be our profile picture for the user-->
+                <a href="#" id="profileBtn" title="User Profile">
                     <img src="res/images/profile.png" alt="User Profile Icon" class="profile-icon">
                 </a>
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="#">John Doe</a>
+                    <a href="#">john.doe@ut.ee</a>
+                    <a href="login.html">logout</a>
+                </div>
             </div>
         </nav>
     </header>
