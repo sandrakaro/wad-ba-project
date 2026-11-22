@@ -64,8 +64,6 @@ vue-app/
 |-- vite.config.js              Build config. Contains `base: '/wad-ba-project/'`.
 |-- package.json                Dependencies and the npm scripts.
 |-- README.md                   This file. How the app fits together.
-|-- TODO.md                     The task list. What is still open and where.
-|-- DISCUSSION_NOTES.md         Answers to likely questions in the discussion.
 |
 |-- public/                     Files copied as-is into the build. Served from the site root.
 |   `-- res/images/             All the pictures (avatars and post photos).
@@ -110,7 +108,6 @@ vue-app/
 | change the footer | `src/components/app_footer.vue` |
 | change any styling | `src/assets/main.css` |
 | change what the store holds | `src/store/index.js` |
-| see what is still unfinished | `TODO.md` |
 
 ### The difference between `components/` and `views/`
 
