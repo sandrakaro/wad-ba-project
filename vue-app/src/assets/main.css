@@ -1,0 +1,654 @@
+/*
+Global styles and reset
+
+* <- this star is a universal selector which targets every
+HTML element on the page.
+ */
+* {
+    /*
+    box-sizing: border-box -- has included padding and border thickness
+    in the calculations of width and height of the elements.
+    This prevents the layout from breaking.
+
+    margin: 0 and padding 0 -- Should reset default browser margins and paddings
+    for consistent styling over different browsers hopefully.
+    */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*
+    font-family -- Sets a standard font across the document.
+    background-color -- Sets a body background color.
+    color -- Sets the color of the text.
+
+    Note: in homework 2 this element also carried the flex column layout.
+    That job has now moved to #app, because the whole application tree
+    (header, main, footer) is rendered inside <div id="app"> by Vue.
+    The body only has one child left, so it no longer needs to be a
+    flex container itself.
+    */
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f1ea;
+    color: #2c3531;
+}
+
+/*
+#app -- This is the <div id="app"> element from vue-app/index.html.
+
+Why this rule exists now: Vue 3 mounts INTO the container and replaces its
+children, so #app stays in the DOM and is the real parent of <header>,
+<RouterView>'s output and <footer>. That makes it the element that has to
+be the flex column, exactly like body used to be in homework 2.
+
+display -- Tells #app that it is a flex container.
+flex-direction -- Tells #app that it's a vertical container, so header,
+main and footer stack from top to bottom.
+min-height -- Ensures #app spans at least 100% of the viewport height (vh).
+This is what keeps the footer pushed to the bottom on short pages.
+*/
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*
+Because #app is the flex container now, the page footer is its direct child and
+not a child of body. That is why the footer rule further down uses .app-footer
+instead of body > footer.
+*/
+
+/*Header and navigation
+
+background-color -- Sets a background color for the header.
+padding -- Adds 10pixels of inner vertical space and 20 pixels of horizontal spacing.
+*/
+header {
+    background-color: #4a5d4e;
+    padding: 10px 20px;
+}
+
+/*
+This is the top bar that houses the "Home" and "Make a post" buttons
+aswell as the profile.
+*/
+.nav-bar {
+    /*
+    display -- Tells the navigation wrapper that it's a flex container
+    justify-content -- Pushes navigation links to the far left and the user
+    profile avatar to the far right.
+    align-items -- Vertically centers the items along the navigation bar.
+    max-width -- Sets an upper limit of how wide the navigation bar can grwo.
+    margin -- Horizontally centers the navigation bar within its parent header once the screen width exceeds
+    1200 pixels.
+    auto in this case automatically divides all remaining extra space equally beteen
+    the left and right margins. Keeping the .nav-bar hopefully neatly centered on the page.
+    */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/*This sets up the link container with the inline flex display.
+It also tells that the gap between each of the "Home", "|" and "Make a post"
+would be 10 pixels.
+*/
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* RULE 1: Pseudo-class selector (:hover)
+nav-links a -- Targets all standard link tags that have <a> inside
+elements with the nav-links class.
+text-decoration -- Removes default browser link underlining
+color -- Sets the link text color.
+font-size -- Sets the size of the text to 1.2 times the root font size.
+padding -- Adds 6pixels inner padding above and below and 12 pixels of
+padding to left and rigt around the text itself. This creates clickable button areas.
+border-readius -- Rounds corners of the link buttons backgorund by 4 pixels.
+transition -- Animates the bacground color change hopefully smothly over about 0.2seconds
+during hovering instead of changing instantly.
+*/
+.nav-links a {
+    text-decoration: none;
+    color: #f4f1ea;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+/*This sets a few more settings when the hover happens.
+background-color -- Sets the link background color when curser
+is hovering over "Home" or "Make a post" button.
+color -- Changes the link text color when you are hovering over the text.
+*/
+.nav-links a:hover {
+    background-color: #c87d55;
+    color: #fff;
+}
+
+/*
+user-profile -- Both the icon and dropdown.
+position -- Acts as an anchor point so the absolute-positioned dropdown menu stays correctly positioned directly underneath it.
+display -- Keeps the element inline with other content while still allowing custom width and height.
+*/
+.user-profile {
+    position: relative;
+    display: inline-block;
+}
+
+/*
+profile-icon -- Targets profile image element in the header.
+width -- Fixes square dimension bounds at 35x35 pixels.
+border-radius -- Cuts corners completely to turn the square image into a circle.
+background-color -- Sets the fallback background color while the image is loading.
+cursor -- When hovering over the profile, turns cursor into a pointer.
+display -- Removes default inline spacing around the image.
+*/
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #d0d0d0;
+    cursor: pointer;
+    display: block;
+}
+
+/*
+dropdown-content -- The dropdown menu.
+display -- Hidden by default.
+position -- Makes the menu float above other page elements.
+right -- Aligns the right edge of the menu with the container.
+top -- Dropdown menu isn't right underneath the icon.
+background-color -- Sets a white background color.
+min-width -- Ensures the menu is at least 150 pixels wide.
+border-radius -- Slightly rounds the outer corners of the box.
+overflow -- Clips any content that goes past the rounded corners.
+*/
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background-color: #ffffff;
+    min-width: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/*
+dropdown-content a -- Dropdown menu's text.
+color -- Sets the link text color.
+padding -- Adds internal spacing so links are easy to click.
+text-decoration -- No lines under links.
+display -- Makes the entire link row clickable, not just the text.
+font-size -- Sets the text size.
+*/
+.dropdown-content a {
+    color: #4a5d4e;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+/*
+dropdown-content a:hover -- When hovering over dropdown menu text.
+background-color -- Changes color when hovering over.
+*/
+.dropdown-content a:hover {
+    background-color: #e6ddd4;
+}
+
+/*
+dropdown-content.show -- For JavaScript.
+display -- Makes the menu visible when JavaScript adds the .show class to it.
+*/
+.dropdown-content.show {
+    display: block;
+}
+
+/* Main Layout with Flexbox
+container -- Targets main wrapper holding the sidebars and central feed.
+display -- Activates the  Flexbox layout horizontally aligning sidebars and feed in a single row.
+flex -- Expands container verticallty to use the remaining available space between the
+header and the footer
+max-width -- Limits maximum layout width to 1200pixels on widescreen displays.
+width -- Allows conatiner to stretchout up to 100% of the screen width on smaller viewports.
+margin -- Sets 20pixels top and bottom margins and and automatically centers the container horizontally.
+gap -- Sets a fixed 20 pixel spacing gap between direct flex children. Those are:
+the left sidebar, the main feed and the right sidebar.
+paddig -- Adds 10 pixels of breathing room between the left and right screen edges.
+*/
+.container {
+    display: flex;
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    gap: 20px;
+    padding: 0 10px;
+}
+
+/*Sidebar - Targets the sidebars on the left and right.
+flex -- Assigns a proprotional grow unit to each sidebar.
+In our case that means each sidebar takes 1/4th of horizontal container space.
+background-color -- Fills sidebars with a background color.
+border-radius -- Rounds sidebar outer corners by 8 pixels
+min-height -- Ensures sidebars maintain visible height even when they are empty.
+*/
+.sidebar {
+    flex: 1;
+    background-color: #8f9e8b;
+    border-radius: 8px;
+    min-height: 300px;
+}
+
+/*The main feed
+feed -- Targets the central post feed container
+flex -- Assigns 2 proportional grow units so that the central feed
+takes twice as much in width as a sidebar
+display -- Turns the feed into a fertical Flexbox container which
+stacks the posts top to bottom.
+gap -- Adds 20pixels of vertical spacing betweeen posts.
+*/
+.feed {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* The posts
+article.post -- targets <article> tags with class post
+background color -- Sets the background color for individual posts.
+border -- Draws a light 1pixel solid border frame around each of the 
+posts for better visuals. Without it it would blend into the white background.
+border-radius -- Rounds the corners of the posts by 12 pixels
+overflow -- Clips any child elements that extend past the rounded corners.
+Keeping the 12pixel border nicely.
+padding -- Adds 15 pixels of internal spacing insede the post's container
+display, flex-direction, gap -- Stacks post header, image and or text, 
+body and footer vertically with 10 pixels of spacing. 
+*/
+article.post {
+    background-color: #faf8f5;
+    border: 1px solid #d8e0d5;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    gap: 10px;
+}
+
+/*Child Selector
+article > header -- Tagets <header> tags that are direct immediate children
+of an <article>
+background-color -- Changes the color fo the post's header
+padding -- Adds 10pixels of top and bottom padding and also 20 pixels of
+left and right padding inside the post's header bar
+display -- converts the post header line into a floxbox row
+justify-content -- Pushes author avatar to the far left and the
+post creation date to the far right.
+align-items -- Aligns avatar image and date text along central vertical axis.
+*/
+article > header {
+    background-color: #8f9e8b;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/*
+author-avatar -- Targets small profile icons in the posts.
+width, height -- Set the size of the autohs icon to 30x30 pixels
+border-readius -- Rouns imgae into circular icon
+background-color -- Sets fallback bacground color.
+*/
+.author-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #888;
+}
+
+/*
+post-date -- formats the date text with smaller font size
+and a slightly different color.
+*/
+.post-date {
+    font-size: 0.9rem;
+    color: #f4f1ea;
+}
+
+/*RULE 3: Descendant Selector
+post-content img -- Targets anu <img> tag located inside the
+post-content wrapper.
+width -- Forces post image to scale fully across the inner width of the post.
+height -- Preserves original image aspect ratio dynamically
+while scaling width.
+border-radius -- Sets 6pixels of corner rounding to post imsages.
+margin-bottom -- Sets 8 pixels of margin spacing beneath post images. 
+*/
+.post-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+/*
+post-text -- Sets standard font sizing and 1.4 line-height spacing
+for text messages within the posts.
+*/
+.post-text {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* RULE 4: Adjacent Sibling Selector
+post-image + p -- Targets a <p> element that directly follows an element
+with the class post-image.
+magin-top -- Sets 6pxiels of margin to the top spacing specifically
+when text appears right under an image inside the post.
+*/
+.post-image + p {
+    margin-top: 6px;
+}
+
+/* RULE 5: General Sibling Selector
+article > header ~ footer -- Targeting the <footer> elements sharing the same
+parent that follow after a <header> element.
+
+Why the selector changed from homework 2's `header ~ footer`: in the Vue app
+the page footer (<AppFooter>) is also a sibling that comes after a <header>
+inside #app. The old, broader selector would therefore also paint the PAGE
+footer with this colour and overwrite the dark green rule further down.
+Adding `article >` keeps it a general sibling selector while narrowing it to
+the footer that lives inside a post card only.
+
+Note: this rule does not set a background-color anymore. The post footer used to
+have a beige bar behind the like button, we took it out so the footer blends into
+the post card and only the button and the count are visible.
+
+display -- Makes the post footer a flex row.
+align-items -- Vertically centers the button and the like count.
+justify-content -- Pushes the like button to the far left and the like count to
+the far right, like in Figure 3.
+padding -- Adds a little inner spacing so the button is not glued to the post's edge.
+*/
+article > header ~ footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 10px;
+}
+
+/*
+like-count -- Targets the "N likes" text next to the like button.
+font-size -- Slightly smaller than the post text so it reads as a label and not as
+part of the post body.
+*/
+.like-count {
+    font-size: 0.95rem;
+}
+
+/*
+like-btn -- targets the thumb-up button
+bacgkground, border -- Strips the native HTML
+button background colors and outlines.
+font-size -- Enlarges the thumbs-up icon size
+cursor -- Changes mouse cursor to clickable pointer hand when hovering
+over the button.
+*/
+.like-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/*Footer
+.app-footer -- Targets the page footer component (app_footer.vue).
+
+Why the selector changed from homework 2's `body > footer`: the footer's parent is
+no longer <body>, it is <div id="app">. `body > footer` would match nothing and
+the footer would render unstyled. A class is used instead of `#app > footer` so the
+rule does not depend on the element hierarchy staying exactly the same.
+
+background-color -- Sets the color of the background of the footer.
+color -- Sets the footer text color so it stays readable on the dark green.
+display -- Makes the footer a flex container.
+flex-direction -- Stacks the copyright line and the team line vertically, one under
+the other. Without it they would sit next to each other on one line.
+justify-content -- Horizontally centers the two lines.
+align-items -- Centers the lines on the horizontal axis.
+gap -- Adds 4 pixels of space between the two text lines.
+text-align -- Centers text that wraps onto a second line on a narrow screen.
+padding -- Adds 20 pixels of inner padding above and below the text.
+font-size -- Changes the size of the text of the footer.
+margin-top -- Works with the #app flex container to push the page footer down to
+the screen bottom on short pages. (flex-direction: column)
+*/
+.app-footer {
+    background-color: #4a5d4e;
+    color: #f4f1ea;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    margin-top: auto;
+}
+
+/*
+app-footer p -- Targets the two text lines inside the page footer.
+font-size -- Keeps the copyright and the team line at a readable size instead of
+the browser's default paragraph size.
+*/
+.app-footer p {
+    font-size: 0.95rem;
+}
+
+/*
+reset-likes-btn -- Targets the "Reset likes" button below the feed (Task 4.3).
+align-self -- Overrides the .feed flex column's stretch behaviour, so the button
+shrinks to the width of its own text instead of stretching across the whole feed.
+background-color -- Gives it the light blue pill look of Figure 3.
+border -- Draws a slightly darker blue outline around the pill.
+border-radius -- 999 pixels is a large enough value to fully round the ends of the
+button, which is what makes it a pill and not a rounded rectangle.
+padding -- Adds inner spacing so the text is not touching the edges.
+font-family -- inherit, because a <button> does not inherit the page font by
+default and would otherwise fall back to the system UI font.
+font-size -- Matches the surrounding text size.
+cursor -- Turns the mouse cursor into a pointer hand when hovering over it.
+transition -- Animates the background colour change smoothly on hover.
+*/
+.reset-likes-btn {
+    align-self: center;
+    background-color: #a8c0e8;
+    border: 1px solid #7a9ac8;
+    border-radius: 999px;
+    padding: 8px 22px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/*
+reset-likes-btn:hover -- Pseudo-class rule for the hover state.
+background-color -- Darkens the pill slightly while the cursor is over it.
+*/
+.reset-likes-btn:hover {
+    background-color: #8fb0dd;
+}
+
+/*Signup page (Tasks 1.2 and 5)
+signup-page -- Targets the <main> wrapper of the signup view.
+display -- Makes it a flex container.
+justify-content -- Centers the card horizontally.
+align-items -- Centers the card vertically.
+flex -- 1 lets the page grow to fill the space between the header and the footer,
+so the card stays vertically centered even on a tall screen.
+padding -- Keeps the card away from the screen edges on a small screen.
+*/
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 40px 20px;
+}
+
+/*
+signup-card -- Targets the pale green form card from Figure 2.
+background-color -- Sets the light green card colour.
+border-radius -- Rounds the card's corners.
+padding -- Adds inner spacing around the form rows.
+display -- Makes the card a flex container.
+flex-direction -- Stacks the rows and the button vertically.
+gap -- Adds vertical space between each row and the button.
+width -- Lets the card shrink on a narrow screen.
+max-width -- Caps how wide the card grows on a desktop screen.
+*/
+.signup-card {
+    background-color: #eaf2dc;
+    border-radius: 12px;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 420px;
+}
+
+/*
+form-row -- Targets one "label + input" pair inside the signup form.
+display -- Makes the label and the input sit on one horizontal line.
+align-items -- Vertically centers the label against the input.
+gap -- Adds horizontal space between the label and the input.
+*/
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/*
+form-row label -- Targets the Email and Password labels.
+width -- Fixes the label width so both inputs start at the same x position, which
+keeps the two rows lined up like in Figure 2.
+*/
+.form-row label {
+    width: 90px;
+}
+
+/*
+form-row input -- Targets the Email and Password fields.
+flex -- 1 lets the input take all the horizontal space left over after the label.
+border, border-radius -- Removes the default square border and turns the field
+into a pill shape.
+padding -- Adds inner spacing so the typed text is not cramped against the edge.
+font-family -- inherit, for the same reason as the buttons.
+min-width -- 0, because a flex item refuses to shrink below its content width by
+default, which would overflow the card on a very narrow screen.
+*/
+.form-row input {
+    flex: 1;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-family: inherit;
+    min-width: 0;
+}
+
+/*
+signup-btn -- Targets the blue Signup button.
+align-self -- Centers the button horizontally inside the flex column card.
+background-color -- Sets the blue pill look of Figure 2.
+border -- Removes the default browser button border.
+border-radius -- 999 pixels for the pill shape.
+padding -- Adds inner spacing around the word "Signup".
+font-family -- inherit, as with the other buttons.
+font-size -- Matches the surrounding text size.
+cursor -- Turns the mouse cursor into a pointer hand when hovering.
+*/
+.signup-btn {
+    align-self: center;
+    background-color: #7ea6e0;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 32px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/*
+password-error -- Targets the validation message that Task 6 will render inside
+the signup form. It is styled now so the task only has to add the markup.
+color -- A dark red so it reads as a warning but is still readable.
+font-size -- Slightly smaller than the form text.
+line-height -- Gives the message room to breathe when it wraps onto two lines,
+which it will, because it lists several failed conditions.
+*/
+.password-error {
+    color: #9c2b1e;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/*Responsive layout for mobile devices
+@media (max-width) -- Apllies an enclosed styling rule when screen
+viewport width drops down to 768 pixels or narrower
+container -- Changes main flex layout form horizontal row to single vertical column
+sidebar -- Hides the sidebars on small phone screens to save some space
+feed -- Expands post feed column to 100% of the phone screen width.
+*/
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: none; /* Hide sidebars on smaller mobile screens */
+    }
+
+    .feed {
+        width: 100%;
+    }
+
+    /* The signup card gets narrower padding on a phone, otherwise the 40 pixel
+       side padding would eat most of the width and squeeze the inputs. */
+    .signup-card {
+        padding: 20px;
+    }
+
+    /* The label sits above the input instead of next to it on a phone, because a
+       90 pixel label plus an input does not fit in a narrow card. */
+    .form-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .form-row label {
+        width: auto;
+    }
+}
