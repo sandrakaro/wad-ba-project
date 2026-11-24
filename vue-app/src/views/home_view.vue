@@ -25,13 +25,11 @@ const store = useStore()
 const posts = computed(() => store.getters.allPosts)
 
 /**
- * TODO (Task 4.3 - reset likes button): whoever takes this task, add the handler
- * here.
- * 
- * The store side is NOT written yet either. src/store/index.js has a TODO marking
- * where the resetLikes action and the RESET_LIKES mutation go. Both halves are
- * needed before the button does anything.
+ * (Task 4.3 - reset likes button): 
 */
+const onResetLikes = () => {
+  store.dispatch('resetLikes')
+}
 </script>
 
 <template>
@@ -59,7 +57,7 @@ const posts = computed(() => store.getters.allPosts)
            @click="onResetLikes" to this button and writes onResetLikes() in the
            script block above. The button is already styled and placed like in
            Figure 3, so only the click handler is missing. -->
-      <button type="button" class="reset-likes-btn">
+      <button type="button" class="reset-likes-btn" @click="onResetLikes">
         Reset likes
       </button>
     </main>

@@ -15,6 +15,6 @@ const year = new Date().getFullYear()
   <!-- Our footer that includes the traditional copyright and also has our names and team name.-->
   <footer class="app-footer">
     <p>&copy; {{ year }} PostIt - Web Application Development</p>
-    <p>University of Tartu, Team BA, Sandra, Arnold and Hannaliisa</p>
+    <p>University of Tartu, Team BA, Sandra, Arnold and Hanna Liisa</p>
   </footer>
 </template>

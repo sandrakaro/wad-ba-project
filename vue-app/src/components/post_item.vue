@@ -77,15 +77,14 @@ const formattedDate = computed(() =>
 )
 
 /**
- * TODO (Task 4.2 - like button): whoever takes this task, add the handler here.
- * 
- * The store side is NOT written yet either. src/store/index.js has a TODO marking
- * where the likePost action and the INCREMENT_LIKES mutation go. Both halves are
- * needed before the button does anything.
+ * (Task 4.2 - like button)
  *
  * The component must never do post.value.likes++ itself. State may only be changed
  * inside a mutation, so it goes through dispatch to the store.
  */
+ const onLike = () => {
+  store.dispatch('likePost', props.postId)
+}
 </script>
 
 <template>
@@ -132,11 +131,8 @@ const formattedDate = computed(() =>
     <!-- This footer has to stay AFTER the header as a sibling, because main.css
          styles it with the general sibling selector article > header ~ footer. -->
     <footer class="post-footer">
-      <!-- TODO (Task 4.2 - like button): the person who owns this task adds
-           @click="onLike" to this button and writes onLike() in the script block
-           above. The button and the count next to it are already here and already
-           styled, so only the click handler is missing. -->
-      <button type="button" class="like-btn" aria-label="Like post">
+      <!-- (Task 4.2 - like button): -->
+      <button type="button" class="like-btn" aria-label="Like post" @click="onLike">
         👍
       </button>
       <!-- The count comes straight from the store, so it updates by itself as
