@@ -612,6 +612,7 @@ which it will, because it lists several failed conditions.
     color: #9c2b1e;
     font-size: 0.9rem;
     line-height: 1.4;
+    white-space: pre-line; /* Allows newline characters (\n) between the errors for better displaying */
 }
 
 /*Responsive layout for mobile devices

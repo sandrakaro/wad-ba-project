@@ -8,6 +8,7 @@
  * file only contains the form.
  */
 import { reactive } from 'vue'
+import { computed } from 'vue'
 
 /**
  * ### The form state ###
@@ -38,6 +39,61 @@ const form = reactive({
 function onSubmit() {
   console.log('signup', form.email, form.password)
 }
+
+/**
+ * this function validates a password according to rules in hw instructions.
+ * for this we have imported computed above and used it here, since we want to
+ * compute the list of errors based on the entered password, and we want it to be 
+ * recomputed every time the password changes.
+ */
+const passwordErrors = computed(() => {
+  const errors = []
+  if (form.password.length < 8) {
+    errors.push('Password must be at least 8 characters long.')
+  }
+  if (form.password.length >= 15) {
+    errors.push('Password must be less than 15 characters long.')
+    // nb! 15 characters is not allowed
+  }
+  /**
+   * the test function takes the preceding regex and returns true if the string matches it.
+   * the / / backslashes are compulsory around regex, they are just a delimiter like " " quotes for strings.
+   * here we check if any capital letter from any world alphabet is in the password (ÕÄÖÜ included).
+   * \p{Lu} is a unicode category that peans Letter uppercase. \p is the unicode escape character,
+   * flag u is compulsory for unicode regex.
+   * */
+
+  if (!(/\p{Lu}/u.test(form.password))) {
+    errors.push('Password must contain at least one uppercase alphabetic character.')
+  }
+  /**
+   * there is a way to do this with regex but it can be confusing so we use a simpler approach.
+   * we go through the whole password, match all lowercase alphabetic characters and put them in an array.
+   * if there are none, then lowercaseChars would be null, so we add "or empty array" (|| []) to avoid
+   * errors when checking the array's length in case no characters matched.
+   * the type of lowercaseChars is array and the type of it's elements is string.
+  */
+  const lowercaseChars = form.password.match(/\p{Ll}/gu) || []
+  if (lowercaseChars.length < 2) {
+    errors.push('Password must contain at least two lowercase alphabetic characters.')
+  }
+  // d stands for digit
+  if (!(/\d/.test(form.password))) {
+    errors.push('Password must contain at least one numeric value.')
+  }
+  if (!(/^\p{Lu}/u).test(form.password)) {
+    errors.push('Password must start with an uppercase letter.')
+  }
+  /**
+   * here we use regular regex format. it is square brackets [ ], which contain all
+   * the characters we are looking for. as always, we add the backslash delimiters around it.
+   */
+  if (!(/[_]/.test(form.password))) {
+    errors.push('Password must contain an underscore _ character.')
+  }
+
+  return errors
+})
 </script>
 
 <template>
@@ -81,11 +137,11 @@ function onSubmit() {
            main.css, so it only needs the markup and the computed that produces the
            list of failed conditions. The homework wants every failed condition
            listed, not just "invalid". -->
-      <!-- <p class="password-error" v-if="form.password && passwordErrors.length">
-             The password is not valid - {{ passwordErrors.join(', ') }}
-           </p> -->
-
-      <button type="submit" class="signup-btn">Signup</button>
+      <p class="password-error" v-if="form.password && passwordErrors.length">
+        {{'The password is not valid –\n' + '* ' + passwordErrors.join('\n * ') }}
+      </p>
+      <!--button is diabled if at least one error is present in the password-->
+      <button type="submit" class="signup-btn" :disabled="passwordErrors.length>0">Signup</button>
     </form>
   </main>
 </template>

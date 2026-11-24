@@ -7,7 +7,7 @@
  * class, and it keeps the Homework 2 look with the dark green bar at the bottom.
  */
 
-// Getting the yaer
+// Getting the year
 const year = new Date().getFullYear()
 </script>
 
