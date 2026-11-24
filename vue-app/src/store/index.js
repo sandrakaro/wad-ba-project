@@ -89,15 +89,35 @@ export default createStore({
   mutations: {
 
     /**
-     * TODO (Task 4.2 - like button): whoever takes this task, add the mutation
-     * that increases one post's like count here.
+     * (Task 4.2 - like button): The mutation
+     * that increases one post's like count.
      * 
     */
+    toggleLike(state, postId) {
+      const post = state.posts.find(p => p.id === postId);
+      if (post) {
+        // If the post isn't yet liked, let's set it to true and add a like 
+        if (!post.isLiked) {
+          post.likes++;
+          post.isLiked = true;
+        } else {
+          // If it was already liked, let's take the like away and set it to false
+          post.likes--;
+          post.isLiked = false;
+        }
+      }
+    },
 
     /**
-     * TODO (Task 4.3 - reset likes button): the mutation that sets every post's
+     * (Task 4.3 - reset likes button): the mutation that sets every post's
      * like count back to zero goes here.
     */
+    resetAllLikes(state) {
+      state.posts.forEach(post => {
+        post.likes = 0;
+        post.isLiked = false;
+      });
+    }
   },
 
   /**
@@ -110,9 +130,14 @@ export default createStore({
   actions: {
 
     /**
-     * TODO (Task 4.2 / 4.3): each action only needs to commit its mutation.
+     * (Task 4.2 / 4.3): each action only needs to commit its mutation.
      * 
     */
-
+    likePost({ commit }, postId) {
+      commit('toggleLike', postId);
+    },
+    resetLikes({ commit }) {
+      commit('resetAllLikes');
+    }
   }
 })

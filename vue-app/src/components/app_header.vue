@@ -4,10 +4,10 @@
  *
  * Like the footer it is used once, in App.vue, outside the router, so it appears
  * on both pages and never unmounts when we navigate. That is why the header is not
- * repeated inside HomeView and SignupView.
+ * repeated inside HomeView and SignupView. onMounted when page loads, onUnmounted when clicking on other page so menu disappears.
  */
 
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { asset } from '../utils/assets'
 
 /**
@@ -18,13 +18,31 @@ import { asset } from '../utils/assets'
  *
  * ref() wraps the value so Vue can watch it. That is why it is read and written as
  * isMenuOpen.value and not just isMenuOpen. In the template the .value is not
- * needed, Vue unwraps it for us there.
+ * needed, Vue unwraps it for us there. Null is just a safe option until the page loads fully.
  */
 const isMenuOpen = ref(false)
+const profileContainer = ref(null)
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value
 }
+
+/**
+ * Function that closes the dropdown menu when clicking elsewhere. Added listeners below.
+ */
+function handleClickOutside(event) {
+  if (profileContainer.value && !profileContainer.value.contains(event.target)) {
+    isMenuOpen.value = false
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('click', handleClickOutside)
+})
 
 /**
  * The avatar lives in public/res/images/, so it is served from the site root.
@@ -55,7 +73,7 @@ const profileIcon = asset('res/images/profile.png')
 
       </div>
 
-      <div class="user-profile">
+      <div class="user-profile" ref="profileContainer">
 
         <!-- .prevent is a modifier, it calls event.preventDefault() for us. It
              stops the href="#" from jumping to the top of the page. -->
